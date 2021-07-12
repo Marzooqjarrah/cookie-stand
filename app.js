@@ -15,6 +15,7 @@ this.customernumber.push(random(this.min, this.max));
 
     }
     },
+    
     gticookiesperhour: function (){
       
         for (let j=0; j<14;j++) {
