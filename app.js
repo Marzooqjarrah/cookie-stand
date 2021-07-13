@@ -13,10 +13,13 @@ function Cities(name, min, max, avg) {
     this.min = min;
     this.max = max;
     this.avg = avg;
+    this.totalCookiesperDay=0;
    this.cookiesperhour= [];
     this.customernumber= [];
 city.push(this)
+
 }
+
 
 Cities.prototype.gitcustomerperhour = function () {
 
@@ -24,13 +27,18 @@ Cities.prototype.gitcustomerperhour = function () {
         this.customernumber.push(random(this.min, this.max));
     }
 }
+let totals2=0;
 
 Cities.prototype.gticookiesperhour = function () {
-    for (let j = 0; j < 14; j++) {
-        this.cookiesperhour.push(Math.floor(this.customernumber[j] * this.avg));
+    for (let i = 0; i < 14; i++) {
+        this.cookiesperhour.push(Math.floor(this.customernumber[i] * this.avg));
+
+        this.totalCookiesperDay+=this.cookiesperhour[i];
     }
 
-}
+
+
+
 
 
 // Cities.prototype.cookies(x, y) = function () {
@@ -40,105 +48,196 @@ Cities.prototype.gticookiesperhour = function () {
 // }
 
 
-let Seattle = new Cities
-    ('Seattle', 23, 65, 6.3);
-    Seattle.gitcustomerperhour();
-    Seattle.gticookiesperhour();
-    // Seattle.cookies();
+let Seattle = new Cities('Seattle', 23, 65, 6.3);
+let Tokyo = new Cities ('Tokyo', 3, 24, 1.2);
+let Dubai = new Cities ('Dubai', 11, 38, 3.7);
+let Paris = new Cities ('Paris', 20, 38, 2.3);
+let Lima = new Cities  ('Lima', 2, 16, 4.6);
+
+
+
+let parent = document.getElementById('parent');
+
+let table = document.createElement('table');
+parent.appendChild(table);
+
+for (let i = 0; i< city.length; i++) {
+    city[i].gitcustomerperhour();
+    city[i].gticookiesperhour();
+
+}
+
+
+
+
+    // Seattle.gitcustomerperhour();
+    // Seattle.gticookiesperhour();
+    // // Seattle.cookies();
 
 // Seattle.Cities();
-console.log(Seattle);
 
 
 
-let Tokyo = new Cities
-    ('Tokyo', 3, 24, 1.2);
+
+
 
 // Tokyo.Cities();
-Tokyo.gitcustomerperhour();
-Tokyo.gticookiesperhour();
-// Tokyo.cookies;
-
-console.log(Tokyo);
+// Tokyo.gitcustomerperhour();
+// Tokyo.gticookiesperhour();
+// // Tokyo.cookies;
 
 
 
-let Dubai = new Cities
-    ('Dubai', 11, 38, 3.7);
+
+
+
 
 // Dubai.Cities();
-Dubai.gitcustomerperhour();
-Dubai.gticookiesperhour();
-// Dubai.cookies;
-
-console.log(Dubai);
+// Dubai.gitcustomerperhour();
+// Dubai.gticookiesperhour();
+// // Dubai.cookies;
 
 
 
-let Paris = new Cities
-    ('Paris', 20, 38, 2.3);
-
-// Paris.Cities();
-Paris.gitcustomerperhour();
-Paris.gticookiesperhour();
-// Paris.cookies;
-
-console.log(Paris);
 
 
 
-let Lima = new Cities
-    ('Lima', 2, 16, 4.6);
+
+// // Paris.Cities();
+// Paris.gitcustomerperhour();
+// Paris.gticookiesperhour();
+// // Paris.cookies;
+
+
+
+
+
+
 
 // Lima.Cities();
-Lima.gitcustomerperhour();
-Lima.gticookiesperhour();
-// Lima.cookies;
-
-console.log(Lima);
+// Lima.gitcustomerperhour();
+// Lima.gticookiesperhour();
+// // Lima.cookies;
 
 
 
 
-function header(){
 
-
-    let parent=document.getElementById('parent');
-
-    
-    let table=document.createElement('table');
-    parent.appendChild(table);
+function makeheader(){
 
     let headingRow=document.createElement('tr');
     table.appendChild(headingRow);
 
-    let thEl=document.createElement('th');
-    headingRow.appendChild(thEl);
-    thEl.textContent="ds"
+    let firstTh=document.createElement('th');
+    headingRow.appendChild(firstTh);
+    firstTh.textContent="Name"
 
-    
-
-    for (let i = 0; i < 14; i++) {
-        let thEl=document.createElement('th');
-    headingRow.appendChild(thEl);
-    thEl.textContent="ds"
-
+    for (let i=0; i<14; i++){
+        let hoursTH=document.createElement('th');
     }
 
 
+    headingRow.appendChild(hoursTH);
+    hoursTH.textContent=hours[i];
+    
+    let lastTh = document.createElement('th');
+
+    headingRow.appendChild(lastTh);
+    lastTh.textContent='total daily';
+
+
+}
+
+ Cities.prototype.render=function(){
+     let dataRow=document.createElement('tr');
+
+     table.appendChild(datarow);
+
+let nameTd=document.createElement('td');
+
+dataRow.appendChild(nameTd);
+
+nameTd.textContent=this.name;
+
+for (let i =0; i<14; i++){
+    let cookiesTd=document.createElement('td');
+
+    dataRow.appendChild(cookiesTd);
+
+    cookiesTd.textContent=this.cookiesperhour[i];
+}
+
+let tatalTd=document.createElement('td');
+dataRow.appendChild(totalTd);
+
+totalTd.textContent=this.totalCookiesperDay;
+
+    }
+
+   
+
+   
+    function makefooter(){
+
+let footerRow=document.createElement('tr');
+table.appendChild(footerRow);
+
+let firstTh=document.createElement('th');
+footerRow.appendChild(firstTh);
+
+firstTh.textContent='Totals';
+
+let totalOfTotals=0;
+
+for (let i = 0; i < 14; i++) {
+    console.log(hours[i]);
+
+let totalForEachHour=0;
+
+for(let j=0; j<city.length; j++){
+    totalForEachHour+=city[j];
+    cookiesperhour[i];
+
+    totalOfTotals += city[j];
+    cookiesperhour[i];
+}
+
+console.log(totalForEachHour);
+
+
+let footerTh= document.createElement('th');
+footerRow.appendChild(footerTh);
+
+footerTh.textContent=totalForEachHour;
+    
 }
 
 
-Cities.prototype.render = function(){}
+let lastTh = Document.createElement('th');
 
-function footer(){
+footerRow.appendChild(lastTh);
 
-}
-for (let i = 0; i < city.length; i++) {
+lastTh.textContent = totalOftotals;
+
+
+    }
+    
+
+
+
+   console.log(city);
+
+makeheader();
+
+for ( let i =0;i<city.length;i++){
+    city[i].gitcustomerperhour();
+    city[i].gticookiesperhour();
     city[i].render();
-
 }
-console.log(Cities);
+
+
+makefooter();
+
 
 
 
