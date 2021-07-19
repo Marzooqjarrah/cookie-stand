@@ -3,8 +3,28 @@
 table,tr,th,td {
     border: 1px solid;
     border-collapse: collapse;
+    color: saddlebrown;
+    background-color: violet;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 1300px;
+    height: 50px;
+    text-align: center;
+     
 }
 
+form{
+    background-color: wheat;
+     color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
 
+ 
 
+button {
+    font-family: 'Times New Roman', Times, serif;
+    color:red;
+    background-color: royalblue;
+    font-size: 10px;
+}
 
